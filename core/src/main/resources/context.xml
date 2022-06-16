@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <beans profile="dev">
+        <context:annotation-config/>
+        <context:property-placeholder location="application.properties"/>
+        <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+        <!-- IMPORTANT!!! "p"- namespace PATH IS ABSENT IN CURRENT VERSION OF SPRING FOLDER FOR SCHEMA XSD:-->
+        <!-- THIS IS ABSENT: xmlns:p="http://www.springframework.org/schema/p"-->
+        <!-- Example of use "p"- namespace for properties if it would be able is shown in the comment below -->
+        <!-- <bean class="org.example.booking.core.util.Storage" id="storage" p:storageFileName="${booking.core.storage.file}" init-method="init" destroy-method="destroy"/>-->
+
+        <bean class="org.example.booking.core.util.Storage" id="storage" init-method="init" destroy-method="destroy">
+            <property name="storageFileName" value="${booking.core.storage.file}"/>
+        </bean>
+
+        <bean class="org.example.booking.core.dao.UserDao" id="userDao">
+            <property name="storage" ref="storage"/>
+        </bean>
+
+        <bean class="org.example.booking.core.dao.EventDao" id="eventDao">
+            <property name="storage" ref="storage"/>
+        </bean>
+
+        <bean class="org.example.booking.core.dao.TicketDao" id="ticketDao">
+            <property name="storage" ref="storage"/>
+        </bean>
+
+        <bean class="org.example.booking.core.service.EventService" id="eventService"/>
+        <bean class="org.example.booking.core.service.TicketService" id="ticketService"/>
+        <bean class="org.example.booking.core.service.UserService" id="userService"/>
+
+        <bean class="org.example.booking.core.facade.BookingFacadeImpl" id="bookingFacadeImpl">
+            <constructor-arg type="org.example.booking.core.service.EventService" ref="eventService"/>
+            <constructor-arg type="org.example.booking.core.service.UserService" ref="userService"/>
+            <constructor-arg type="org.example.booking.core.service.TicketService" ref="ticketService"/>
+        </bean>
+    </beans>
+
+    <beans profile="test">
+        <context:annotation-config/>
+        <context:property-placeholder location="application-test.properties"/>
+        <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+        <bean class="org.example.booking.core.util.Storage" id="storage" init-method="init" destroy-method="destroy">
+            <property name="storageFileName" value="${booking.core.storage.file}"/>
+        </bean>
+
+        <bean class="org.example.booking.core.dao.UserDao" id="userDao">
+            <property name="storage" ref="storage"/>
+        </bean>
+
+        <bean class="org.example.booking.core.dao.EventDao" id="eventDao">
+            <property name="storage" ref="storage"/>
+        </bean>
+
+        <bean class="org.example.booking.core.dao.TicketDao" id="ticketDao">
+            <property name="storage" ref="storage"/>
+        </bean>
+
+        <bean class="org.example.booking.core.service.EventService" id="eventService"/>
+        <bean class="org.example.booking.core.service.TicketService" id="ticketService"/>
+        <bean class="org.example.booking.core.service.UserService" id="userService"/>
+
+        <bean class="org.example.booking.core.facade.BookingFacadeImpl" id="bookingFacadeImpl">
+            <constructor-arg type="org.example.booking.core.service.EventService" ref="eventService"/>
+            <constructor-arg type="org.example.booking.core.service.UserService" ref="userService"/>
+            <constructor-arg type="org.example.booking.core.service.TicketService" ref="ticketService"/>
+        </bean>
+    </beans>
+
+    <beans profile="prod">
+        <context:annotation-config/>
+        <context:property-placeholder location="application-prod.properties"/>
+        <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+        <bean class="org.example.booking.core.util.Storage" init-method="init" destroy-method="destroy">
+            <property name="storageFileName" value="${booking.core.storage.file}"/>
+        </bean>
+
+    </beans>
+
+
+</beans>

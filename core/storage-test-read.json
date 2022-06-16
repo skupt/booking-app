@@ -1,0 +1,9 @@
+{
+  "event:12345": "{\"id\":12345,\"title\":\"Cinema\",\"date\":1196640300010}",
+  "event:123456": "{\"id\":123456,\"title\":\"Cinema\",\"date\":61157455200001}",
+  "event:123457": "{\"id\":123457,\"title\":\"Cinema\",\"date\":61157455200002}",
+  "event:123458": "{\"id\":123458,\"title\":\"Action\",\"date\":61157455200003}",
+  "user:12345": "{\"id\":12345,\"name\":\"Vasya\",\"email\":\"email@emaol.com\"}",
+  "user:12346": "{\"id\":12346,\"name\":\"Vasya\",\"email\":\"email@emaol.com\"}",
+  "ticket:12345": "{\"id\":12345,\"eventId\":23456,\"userId\":34567,\"category\":\"BAR\",\"place\":12}"
+}

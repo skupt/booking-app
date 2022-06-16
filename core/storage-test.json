@@ -1,0 +1,1 @@
+{"event:12345":"{\"id\":12345,\"title\":\"\",\"date\":61157455200000}","user:12345":"{\"id\":12345,\"name\":\"Vasya\",\"email\":\"email@emaol.com\"}","user:12346":"{\"id\":12346,\"name\":\"Vasya\",\"email\":\"email@emaol.com\"}","ticket:12345":"{\"id\":12345,\"eventId\":23456,\"userId\":34567,\"category\":\"BAR\",\"place\":12}"}
